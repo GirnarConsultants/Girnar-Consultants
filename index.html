@@ -43,7 +43,7 @@ footer{background:#0e1317;color:#d3d6d8;padding:28px 0 18px}.footer-top{display:
     <h1 class="en">Architecture that<br><span>feels like home.</span></h1><h1 class="hi">आपके सपनों का घर,<br><span>हमारी डिज़ाइन पहचान।</span></h1>
     <p class="en">From house plans to photorealistic 3D elevations, we help turn your ideas into beautiful, functional spaces.</p>
     <p class="hi">घर के नक्शे से लेकर शानदार 3D एलिवेशन तक — आपके सपनों को खूबसूरत और उपयोगी जगहों में बदलने में हम आपके साथ हैं।</p>
-    <div class="hero-actions"><a class="btn" href="#portfolio"><span class="en">Explore Our Work</span><span class="hi">हमारा काम देखें</span> ↗</a><a class="btn outline" href="#contact"><span class="en">Discuss Your Project</span><span class="hi">अपने प्रोजेक्ट पर बात करें</span></a></div>
+    <div class="hero-actions"><a class="btn" href="#portfolio"><span class="en">Explore Our Work</span><span class="hi">हमारा काम देखें</span> ↗</a><button type="button" class="btn outline" onclick="openProjectForm()"><span class="en">Discuss Your Project</span><span class="hi">अपने प्रोजेक्ट पर बात करें</span></button></div>
   </div>
   <div class="hero-note">Designing<br>better living.</div>
 </section>
@@ -76,7 +76,119 @@ footer{background:#0e1317;color:#d3d6d8;padding:28px 0 18px}.footer-top{display:
 <section class="contact" id="contact"><div class="wrap contact-inner"><div><div class="eyebrow">Have a project in mind?</div><h2 class="en">Let’s build something<br>beautiful together.</h2><h2 class="hi">आइए, आपके सपनों की<br>जगह साथ मिलकर बनाएँ।</h2><p class="en">Tell us what you’re planning. Let’s start with a conversation.</p><p class="hi">आप क्या बनाना चाहते हैं, हमें बताइए। शुरुआत एक बातचीत से करें।</p></div><div class="contact-actions"><a class="btn" id="whatsappLink" href="https://wa.me/919755067138" rel="noopener">WhatsApp ↗</a><a class="btn outline" id="emailLink" href="mailto:Girnarconsultants.mds@gmail.com">Email Us ↗</a><a class="btn" href="https://www.instagram.com/girnarconsultans/"target="_blank">Instagram ↗</a></div></div></section> 
 </main>
 <footer><div class="wrap"><div class="footer-top"><a class="brand" href="#home"><img src="new_girnar_logo.png" alt="Girnar Consultants Logo" class="brandmark">"<span>GIRNAR<small>CONSULTANTS · PLAN · DESIGN · BUILD</small></span></a><div class="footer-contact"><span>⌖ India</span><span>✉ <a href="mailto:GirnarConsultants.mds@gmail.com">GirnarConsultants.mds@gmail.com</a></span><span>☎ <a href="tel:+919755067138">97550 67138</a></span></div></div><div class="footer-bottom"><span>© <span id="year"></span> Girnar Consultants. All rights reserved.</span><span>Architectural Design · House Plans · 3D Visualization</span></div></div></footer>
-<script>
+/* Project inquiry popup */
+.project-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(12, 17, 22, 0.82);
+  padding: 12px;
+  overflow-y: auto;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.project-modal.is-open {
+  display: flex;
+}
+
+.project-modal-content {
+  background: #fff;
+  color: #20252b;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  padding: 26px 20px;
+  border-radius: 12px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.project-modal-content h2 {
+  margin: 0 35px 8px 0;
+  font-size: 26px;
+}
+
+.project-modal-content h3 {
+  margin: 24px 0 14px;
+  font-size: 19px;
+  color: #9c793c;
+}
+
+.project-modal-content label {
+  display: block;
+  margin: 16px 0 7px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.project-modal-content input,
+.project-modal-content select,
+.project-modal-content textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d4d7da;
+  border-radius: 6px;
+  background: #fff;
+  color: #20252b;
+  font: inherit;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.project-modal-content textarea {
+  resize: vertical;
+}
+
+.project-modal-content .other-answer {
+  display: none;
+  margin-top: 9px;
+}
+
+.project-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  border: 0;
+  background: transparent;
+  font-size: 32px;
+  cursor: pointer;
+  color: #333;
+}
+
+.project-submit {
+  width: 100%;
+  margin-top: 24px;
+  padding: 15px;
+  border: 0;
+  border-radius: 6px;
+  background: #c9a568;
+  color: #171a1e;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.project-note {
+  font-size: 12px;
+  color: #626870;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .project-modal-content {
+    padding: 24px 16px;
+  }
+
+  .project-modal-content h2 {
+    font-size: 23px;
+  }
+}
+  <script>
 const body=document.body;
 const langButtons=document.querySelectorAll('[data-lang]');
 function setLang(lang){body.setAttribute('lang',lang);langButtons.forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));document.documentElement.lang=lang;document.querySelectorAll('[data-en]').forEach(el=>el.textContent=lang==='hi'?el.dataset.hi:el.dataset.en);localStorage.setItem('girnar-lang',lang)}
@@ -84,6 +196,89 @@ langButtons.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));
 document.querySelectorAll('#navlinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open')));
 document.getElementById('year').textContent=new Date().getFullYear();
+function openProjectForm() {
+  const modal = document.getElementById("projectFormModal");
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeProjectForm() {
+  const modal = document.getElementById("projectFormModal");
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+document.querySelectorAll("#projectInquiryForm select[data-other]")
+  .forEach(function (select) {
+    const otherInput = document.getElementById(select.dataset.other);
+
+    function updateOtherField() {
+      const isOther = select.value === "Others";
+      otherInput.style.display = isOther ? "block" : "none";
+      otherInput.required = isOther;
+      if (!isOther) otherInput.value = "";
+    }
+
+    select.addEventListener("change", updateOtherField);
+    updateOtherField();
+  });
+
+document.getElementById("projectFormModal")
+  .addEventListener("click", function (event) {
+    if (event.target === this) closeProjectForm();
+  });
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") closeProjectForm();
+});
+
+document.getElementById("projectInquiryForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (!this.reportValidity()) return;
+
+    function answer(selectId, otherId) {
+      const selected = document.getElementById(selectId).value;
+      return selected === "Others"
+        ? document.getElementById(otherId).value.trim()
+        : selected;
+    }
+
+    const name = document.getElementById("customerName").value.trim();
+    const phone = document.getElementById("customerPhone").value.trim();
+    const city = document.getElementById("customerCity").value.trim();
+    const email = document.getElementById("customerEmail").value.trim();
+    const project = answer("projectType", "otherProjectType");
+    const service = answer("requiredService", "otherRequiredService");
+    const area = answer("plotArea", "otherPlotArea");
+    const floors = answer("floorCount", "otherFloorCount");
+    const details = document.getElementById("projectDetails").value.trim();
+
+    const message = [
+      "NEW PROJECT INQUIRY — GIRNAR CONSULTANTS",
+      "",
+      "Name: " + name,
+      "Customer Mobile: " + phone,
+      "City / Location: " + city,
+      "Email: " + (email || "Not provided"),
+      "",
+      "Project Type: " + project,
+      "Required Service: " + service,
+      "Plot / Built-up Area: " + area,
+      "Number of Floors: " + floors,
+      "Additional Requirements: " + (details || "None provided"),
+      "",
+      "Sent from Girnar Consultants website."
+    ].join("\n");
+
+    const whatsappURL =
+      "https://wa.me/919755067138?text=" + encodeURIComponent(message);
+
+    window.location.href = whatsappURL;
+  });
 </script>
 </body>
 </html>
