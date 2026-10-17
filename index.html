@@ -190,6 +190,85 @@ footer{background:#0e1317;color:#d3d6d8;padding:28px 0 18px}.footer-top{display:
   }
 }
 </style>
+<!-- PROJECT INQUIRY FORM -->
+  <div id="projectFormModal" class="project-modal" aria-hidden="true">
+  <div class="project-modal-content">
+    <button type="button" class="project-close" onclick="closeProjectForm()">&times;</button>
+    <h2>Discuss Your Project</h2>
+    <p>Tell us about your project.</p>
+
+    <form id="projectInquiryForm">
+      <h3>Basic Information</h3>
+
+      <label for="customerName">Full Name *</label>
+      <input id="customerName" type="text" required placeholder="Your full name">
+
+      <label for="customerPhone">Mobile Number *</label>
+      <input id="customerPhone" type="tel" required placeholder="Your mobile number">
+
+      <label for="customerCity">City / Project Location *</label>
+      <input id="customerCity" type="text" required placeholder="Your city">
+
+      <label for="customerEmail">Email (Optional)</label>
+      <input id="customerEmail" type="email" placeholder="Your email">
+
+      <h3>Project Information</h3>
+
+      <label for="projectType">1. Project Type *</label>
+      <select id="projectType" data-other="otherProjectType" required>
+        <option value="">Select project type</option>
+        <option>New House</option>
+        <option>Renovation / Remodeling</option>
+        <option>Commercial Building / Shop</option>
+        <option>Apartment / Multi-storey Building</option>
+        <option>Others</option>
+      </select>
+      <input id="otherProjectType" class="other-answer" placeholder="Please specify project type">
+
+      <label for="requiredService">2. Required Service *</label>
+      <select id="requiredService" data-other="otherRequiredService" required>
+        <option value="">Select service</option>
+        <option>Architectural Design</option>
+        <option>House Plan / 2D Drawings</option>
+        <option>3D Elevation / Visualization</option>
+        <option>Interior Design</option>
+        <option>Structural Design</option>
+        <option>Complete Package</option>
+        <option>Others</option>
+      </select>
+      <input id="otherRequiredService" class="other-answer" placeholder="Please specify required service">
+
+      <label for="plotArea">3. Plot / Built-up Area *</label>
+      <select id="plotArea" data-other="otherPlotArea" required>
+        <option value="">Select area</option>
+        <option>Below 1000 sq. ft.</option>
+        <option>1000–1500 sq. ft.</option>
+        <option>1500–2500 sq. ft.</option>
+        <option>Above 2500 sq. ft.</option>
+        <option>Not decided yet</option>
+        <option>Others</option>
+      </select>
+      <input id="otherPlotArea" class="other-answer" placeholder="Please specify plot or built-up area">
+
+      <label for="floorCount">4. Number of Floors *</label>
+      <select id="floorCount" data-other="otherFloorCount" required>
+        <option value="">Select floors</option>
+        <option>Ground Floor Only</option>
+        <option>Ground + 1 Floor</option>
+        <option>Ground + 2 Floors</option>
+        <option>Ground + 3 Floors</option>
+        <option>Others</option>
+      </select>
+      <input id="otherFloorCount" class="other-answer" placeholder="Please specify number of floors">
+
+      <label for="projectDetails">Additional Requirements (Optional)</label>
+      <textarea id="projectDetails" rows="4" placeholder="Tell us about your requirements"></textarea>
+
+      <button type="submit" class="project-submit">Send Inquiry on WhatsApp</button>
+      <p class="project-note">WhatsApp will open with your details. Please press Send to submit.</p>
+    </form>
+  </div>
+</div>
   <script>
 const body=document.body;
 const langButtons=document.querySelectorAll('[data-lang]');
